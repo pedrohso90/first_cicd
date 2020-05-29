@@ -1,0 +1,32 @@
+version: '3.2'
+services:
+    jenkins:
+        image: jenkins_dojo:0.0.1
+        networks: 
+            - cicd
+        ports:
+            - 8080:8080
+        hostname: jenkins
+        environment:
+            HOSTNAME: jenkins
+            JAVA_OPTS: -Duser.timezone=America/Sao_Paulo
+            GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no -i /run/secrets/id_rsa"
+            TZ: America/Sao_Paulo
+        secrets:
+            - source: id_rsa
+              target: id_rsa
+              uid: '1000'
+              gid: '1000'
+              mode: 0600
+        deploy:
+            mode: replicated
+            replicas: 1
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - $PWD/jenkins_home/:/var/jenkins_home
+secrets:
+    id_rsa:
+        file : $HOME/.ssh/id_rsa
+networks: 
+    cicd:
+        external: true

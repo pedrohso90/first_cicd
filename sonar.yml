@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+    sonar:
+        image: sonarqube:7.9-community
+        networks: 
+            - cicd
+        ports:
+            - 9000:9000
+        hostname: sonar
+        deploy:
+            mode: replicated
+            replicas: 1
+networks: 
+    cicd:
+        external: true
