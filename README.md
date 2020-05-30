@@ -6,8 +6,8 @@
 <i>docker network create --driver overlay cicd</i>
 
 ## build image, prepare dir and deploy jenkins stack cicd
-<i>mkdir jenkins_home</i>
-<i>sudo chown 1000:1000 jenkins_home</i>
+<i>mkdir jenkins_home</i><br>
+<i>sudo chown 1000:1000 jenkins_home</i><br>
 <i>docker build -t jenkins:0.0.1 -f Dockerfile .</i><br>
 <i>docker stack deploy -c jenkins.yml cicd</i>
 
