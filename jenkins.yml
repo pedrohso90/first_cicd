@@ -1,7 +1,7 @@
 version: '3.2'
 services:
     jenkins:
-        image: jenkins_dojo:0.0.1
+        image: jenkins:0.0.1
         networks: 
             - cicd
         ports:

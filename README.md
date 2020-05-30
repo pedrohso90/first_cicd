@@ -1,9 +1,12 @@
 # CICD Initials
 
+* pre reqs: docker swarm
+
 ## create network docker
 <i>docker network create --driver overlay cicd</i>
 
-## deploy jenkins stack cicd
+## build image and deploy jenkins stack cicd
+<i>docker build -t jenkins:0.0.1 -f Dockerfile .</i>
 <i>docker stack deploy -c jenkins.yml cicd</i>
 
 ## deploy sonar stack cicd
